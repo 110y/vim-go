@@ -8,7 +8,7 @@ let s:lspfactory = {}
 
 function! s:lspfactory.get() dict abort
   if empty(get(self, 'current', {})) || empty(get(self.current, 'job', {}))
-    let self.current = s:newlsp()
+    " let self.current = s:newlsp()
   endif
 
   return self.current
