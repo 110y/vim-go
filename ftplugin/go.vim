@@ -90,9 +90,9 @@ augroup vim-go-buffer
   " too (e.g.  BufFilePost , CursorHold , CursorHoldI, FileReadPost,
   " StdinReadPre, BufWritePost, TextChange, TextChangedI)
   if go#util#has_job()
-    autocmd BufWritePost <buffer> call go#lsp#DidChange(expand('<afile>:p'))
-    autocmd FileChangedShell <buffer> call go#lsp#DidChange(expand('<afile>:p'))
-    autocmd BufDelete <buffer> call go#lsp#DidClose(expand('<afile>:p'))
+    " autocmd BufWritePost <buffer> call go#lsp#DidChange(expand('<afile>:p'))
+    " autocmd FileChangedShell <buffer> call go#lsp#DidChange(expand('<afile>:p'))
+    " autocmd BufDelete <buffer> call go#lsp#DidClose(expand('<afile>:p'))
   endif
 
   autocmd CursorHold <buffer> call go#auto#auto_type_info()
