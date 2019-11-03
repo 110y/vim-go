@@ -51,6 +51,11 @@ BUG FIXES:
   [[GH-2529]](https://github.com/fatih/vim-go/pull/2529)
 * Fix example for g:go_debug_log_output in docs.
   [[GH-2547]](https://github.com/fatih/vim-go/pull/2547)
+* Use FileChangedShellPost instead of FileChangedShell so that reload messages
+  are not hidden.
+  [[GH-2549]](https://github.com/fatih/vim-go/pull/2549)
+* Restore cwd after `:GoTest` when `g:go_term_enabled` is set.
+  [[GH-2556]](https://github.com/fatih/vim-go/pull/2556)
 
 ## v1.21 - (September 11, 2019)
 
