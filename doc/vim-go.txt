@@ -1405,6 +1405,16 @@ and `guru`.
 >
   let g:go_def_mode = 'gopls'
 <
+                                                       *'g:go_referrers_mode'*
+
+Use this option to define the command to be used for |:GoReferrers|. By
+default `gopls` is used, because it is the fastest and works with Go modules.
+One might also use `guru` for its ability to show references from other
+packages.  This option will be removed after `gopls` can show references from
+other packages. Valid options are `gopls` and `guru`.
+>
+  let g:go_referrers_mode = 'gopls'
+<
                                                   *'g:go_def_mapping_enabled'*
 
 Use this option to enable/disable the default mapping of CTRL-],
@@ -1702,6 +1712,39 @@ Specifies whether `gocode` should use a different socket type. By default
 >
   let g:go_gocode_socket_type = 'unix'
 <
+
+                                            *'g:go_gopls_complete_unimported'*
+
+Specifies whether `gopls` should include suggestions from unimported packages.
+By default it is disabled.
+>
+  let g:go_gopls_complete_unimported = 0
+<
+
+                                                *'g:go_gopls_deep_completion'*
+
+Specifies whether `gopls` should use deep completion. By default it is
+enabled.
+>
+  let g:go_gopls_deep_completion = 1
+<
+
+                                                 *'g:go_gopls_fuzzy_matching'*
+
+Specifies whether `gopls` should use fuzzy matching for completions.
+By default it is enabled.
+>
+  let g:go_gopls_fuzzy_matching = 1
+<
+
+                                               *'g:go_gopls_use_placeholders'*
+
+Specifies whether `gopls` can provide placeholders for function parameters and
+struct fields. By default it is disabled.
+>
+  let g:go_gopls_use_placeholders = 0
+<
+
                                                   *'g:go_template_autocreate'*
 
 When a new Go file is created, vim-go automatically fills the buffer content
