@@ -38,6 +38,24 @@ IMPROVEMENTS:
   [[GH-2566]](https://github.com/fatih/vim-go/pull/2566)
 * Add options to control how gopls responds to completion requests.
   [[GH-2567]](https://github.com/fatih/vim-go/pull/2567)
+  [[GH-2568]](https://github.com/fatih/vim-go/pull/2568)
+* Add syntax highlighting for binary literals.
+  [[GH-2557]](https://github.com/fatih/vim-go/pull/2557)
+* Improve highlighting of invalid numeric literals.
+  [[GH-2571]](https://github.com/fatih/vim-go/pull/2571)
+  [[GH-2587]](https://github.com/fatih/vim-go/pull/2587)
+  [[GH-2589]](https://github.com/fatih/vim-go/pull/2589)
+  [[GH-2584]](https://github.com/fatih/vim-go/pull/2584)
+  [[GH-2597]](https://github.com/fatih/vim-go/pull/2597)
+  [[GH-2599]](https://github.com/fatih/vim-go/pull/2599)
+* Add highlighting of sections reported by gopls diagnostics' errors
+  and warnings.
+  [[GH-2569]](https://github.com/fatih/vim-go/pull/2569)
+* Make the highlighting of fzf decls configurable.
+  [[GH-2572]](https://github.com/fatih/vim-go/pull/2572)
+  [[GH-2579]](https://github.com/fatih/vim-go/pull/2579)
+* Support renaming with gopls.
+  [[GH-2577]](https://github.com/fatih/vim-go/pull/2577)
 
 BUG FIXES:
 * Fix removal of missing directories from gopls workspaces.
@@ -63,6 +81,8 @@ BUG FIXES:
   [[GH-2549]](https://github.com/fatih/vim-go/pull/2549)
 * Restore cwd after `:GoTest` when `g:go_term_enabled` is set.
   [[GH-2556]](https://github.com/fatih/vim-go/pull/2556)
+* Expand struct variable correctly in the variables debug window.
+  [[GH-2574]](https://github.com/fatih/vim-go/pull/2574)
 
 ## v1.21 - (September 11, 2019)
 
