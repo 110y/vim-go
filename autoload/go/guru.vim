@@ -404,26 +404,14 @@ endfunction
 
 " Show all refs to entity denoted by selected identifier
 function! go#guru#Referrers(selected) abort
-  let l:mode = go#config#ReferrersMode()
-  if l:mode == 'guru'
-    let args = {
-            \ 'mode': 'referrers',
-            \ 'format': 'plain',
-            \ 'selected': a:selected,
-            \ 'needs_scope': 0,
-            \ }
+  let args = {
+          \ 'mode': 'referrers',
+          \ 'format': 'plain',
+          \ 'selected': a:selected,
+          \ 'needs_scope': 0,
+          \ }
 
-    call s:run_guru(args)
-    return
-  elseif l:mode == 'gopls'
-    let [l:line, l:col] = getpos('.')[1:2]
-    let [l:line, l:col] = go#lsp#lsp#Position(l:line, l:col)
-    let l:fname = expand('%:p')
-    call go#lsp#Referrers(l:fname, l:line, l:col, funcref('s:parse_guru_output'))
-    return
-  else
-    call go#util#EchoWarning('unknown value for g:go_referrers_mode')
-  endif
+  call s:run_guru(args)
 endfunction
 
 function! go#guru#SameIds(showstatus) abort
@@ -565,7 +553,7 @@ function! s:parse_guru_output(exit_val, output, title) abort
 
   let errors = go#list#Get(l:listtype)
   call go#list#Window(l:listtype, len(errors))
-endfun
+endfunction
 
 function! go#guru#Scope(...) abort
   if a:0

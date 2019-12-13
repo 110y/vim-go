@@ -1195,7 +1195,7 @@ into the statusline.
 
                                                       *go#complete#Complete()*
 
-Uses `gopls` for autocompletion. By default, it is hooked up to |'omnifunc'|.
+Uses `gopls` for autocompletion. By default, it is hooked up to 'omnifunc'.
 
 
                                                 *go#complete#GocodeComplete()*
@@ -1220,7 +1220,7 @@ enabled.
 
                                               *'g:go_code_completion_enabled'*
 
-Enable code completion with |'omnifunc'|. By default it is enabled.
+Enable code completion with 'omnifunc'. By default it is enabled.
 >
   let g:go_code_completion_enabled = 1
 <
@@ -1340,6 +1340,19 @@ The dictionary version allows you to define options for multiple binaries:
     \ 'goimports': '-local mycompany.com',
     \ }
 <
+                                                          *'b:go_fmt_options'*
+
+This option is identical to |'g:go_fmt_options'|, but a buffer-level setting.
+If present, it's used instead of the global setting. By default it is not set.
+
+As an example, the following autocmd will configure goimports to put imports
+of packages from the current module in their own group:
+>
+  autocmd FileType go let b:go_fmt_options = {
+    \ 'goimports': '-local ' .
+      \ trim(system('{cd '. shellescape(expand('%:h')) .' && go list -m;}')),
+    \ }
+<
                                                     *'g:go_fmt_fail_silently'*
 
 Use this option to disable showing a location list when |'g:go_fmt_command'|
@@ -1368,7 +1381,7 @@ Use this option to auto |:GoModFmt| on save. By default it's enabled >
 
 Use this option to run `godoc` on words under the cursor with |K|; this will
 normally run the `man` program, but for Go using `godoc` is more idiomatic. It
-will not override the |'keywordprg'| setting, but will run |:GoDoc|. Default
+will not override the 'keywordprg' setting, but will run |:GoDoc|. Default
 is enabled. >
 
   let g:go_doc_keywordprg_enabled = 1
@@ -1550,13 +1563,6 @@ it's using `vet`, `golint` and `errcheck`.
 >
   let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 <
-                                                  *'g:go_metalinter_disabled'*
-
-Specifies the linters to disable for the |:GoMetaLinter| command. By default
-it's empty
->
-  let g:go_metalinter_disabled = []
-<
                                                    *'g:go_metalinter_command'*
 
 Overrides the command to be executed when |:GoMetaLinter| is called. By
@@ -1670,13 +1676,13 @@ By default it is set to edit.
 >
   let g:go_alternate_mode = "edit"
 <
-                                                     *'g:go_gorename_command'*
+                                                       *'g:go_rename_command'*
 
 Use this option to define which tool is used to rename. By default `gorename`
 is used. Valid options are `gorename` and `gopls`. Warning: as of `gopls`
 v0.2.0, it will only rename identifiers in the current package.
 >
-  let g:go_gorename_command = 'gorename'
+  let g:go_rename_command = 'gorename'
 <
                                                      *'g:go_gorename_prefill'*
 
@@ -1719,6 +1725,16 @@ Specifies whether `gocode` should use a different socket type. By default
 `unix` is enabled. Possible values: `unix`, `tcp`
 >
   let g:go_gocode_socket_type = 'unix'
+<
+
+                                                        *'g:go_gopls_enabled'*
+
+Specifies whether `gopls` can be used by vim-go. By default gopls is enabled.
+When gopls is disabled completion will not work and other configuration
+options may also need to be adjusted.
+
+>
+  let g:go_gopls_enabled = 1
 <
 
                                             *'g:go_gopls_complete_unimported'*
@@ -2299,7 +2315,7 @@ Completion and other functions that use `gopls` don't work~
 Vim-go is heavily reliant on `gopls` for completion and other functionality.
 Many of the features that use `gopls` (e.g. completion, jumping to
 definitions, showing identifier information, et al.) can be configured to
-delegate to other tools. e.g.  completion via |'omnifunc'|, |'g:go_info_mode'|
+delegate to other tools. e.g.  completion via 'omnifunc', |'g:go_info_mode'|
 and |'g:go_def_mode'| can be set to use other tools for now (though some of
 the alternatives to `gopls` are effectively at their end of life and support
 for them from within vim-go may be removed soon).
