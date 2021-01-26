@@ -34,7 +34,7 @@ function! s:sink(str) abort
     " below
     let l:dir = go#util#Chdir(s:current_dir)
 
-    let vals = matchlist(a:str[1], '|\(.\{-}\):\(\d\+\):\(\d\+\)\s*\(.*\)|')
+    let vals = matchlist(a:str[1], '\t.\{-}\t.\{-}\t\(.\{-}\)\t\(\d\+\)\t\(\d\+\)$')
 
     " i.e: main.go
     let filename =  vals[1]
@@ -42,7 +42,7 @@ function! s:sink(str) abort
     let col =  vals[3]
 
     " i.e: /Users/fatih/vim-go/main.go
-    let filepath =  fnamemodify(filename, ":p")
+    let filepath =  vals[1]
 
     let cmd = get({'ctrl-x': 'split',
           \ 'ctrl-v': 'vertical split',
@@ -113,8 +113,8 @@ function! s:source(mode,...) abort
       let space .= " "
     endfor
 
-    let pos = printf("|%s:%s:%s|",
-          \ fnamemodify(decl.filename, ":t"),
+    let pos = printf("%s\t%s\t%s",
+          \ fnamemodify(decl.filename, "%"),
           \ decl.line,
           \ decl.col
           \)
@@ -141,9 +141,23 @@ function! fzf#decls#cmd(...) abort
         \ empty(cursor_fg) ? "" : (",fg+:".cursor_fg),
         \ empty(cursor_bg) ? "" : (",bg+:".cursor_bg),
         \)
+
+  let opts = [
+        \   '-n', '1',
+        \   '--with-nth', '1,2,3',
+        \   '--delimiter="\t"',
+        \   '--multi',
+        \   '--preview', '"$HOME/.vim/plugged/fzf.vim/bin/preview.sh {4}:{5}:{6}"',
+        \   '--preview-window', "right:50%:+{5}-5:sharp",
+        \   '--ansi',
+        \   '--prompt',  '"> "',
+        \   printf('--expect=ctrl-t,ctrl-v,ctrl-x%s', colors),
+        \   '--bind',  '?:toggle-preview'
+        \ ]
+
   call fzf#run(fzf#wrap('GoDecls', {
         \ 'source': call('<sid>source', a:000),
-        \ 'options': printf('-n 1 --with-nth 1,2 --delimiter=$''\t'' --preview "echo {3}" --ansi --prompt "GoDecls> " --expect=ctrl-t,ctrl-v,ctrl-x%s', colors),
+        \ 'options': join(opts),
         \ 'sink*': function('s:sink')
         \ }))
 endfunction
