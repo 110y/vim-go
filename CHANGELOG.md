@@ -46,6 +46,10 @@ IMPROVEMENTS:
   [[GH-3312]](https://github.com/fatih/vim-go/pull/3312)
 * Install tools with `go install` instead of `go get`.
   [[GH-3317]](https://github.com/fatih/vim-go/pull/3317)
+* Update `:GoPlay` to use `go.dev/play` instead of `play.golang.org`.
+  [[GH-3331]](https://github.com/fatih/vim-go/pull/3331)
+* Recurse local variables more deeply when debugging.
+  [[GH-3344]](https://github.com/fatih/vim-go/pull/3344)
 
 BUG FIXES:
 * Handle terminating parenthesis on hexadecimal values.
@@ -66,6 +70,11 @@ BUG FIXES:
 * Do not highlight misspellings in import paths.
   [[GH-3308]](https://github.com/fatih/vim-go/pull/3308)
   [[GH-3321]](https://github.com/fatih/vim-go/pull/3321)
+* Handle shell quoting when execing.
+  [[GH-3323]](https://github.com/fatih/vim-go/pull/3323)
+* Do not automatically add directories from the module cache into the LSP
+  workspace.
+  [[GH-3343]](https://github.com/fatih/vim-go/pull/3343)
 
 ## v1.25 - (April 18, 2021)
 
