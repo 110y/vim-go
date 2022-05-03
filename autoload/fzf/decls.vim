@@ -148,7 +148,7 @@ function! fzf#decls#cmd(...) abort
         \   '--delimiter="\t"',
         \   '--multi',
         \   '--preview', '"$HOME/.vim/plugged/fzf.vim/bin/preview.sh {4}:{5}:{6}"',
-        \   '--preview-window', "right:50%:+{5}-5:sharp",
+        \   '--preview-window', "up:50%:+{5}-5:sharp",
         \   '--ansi',
         \   '--prompt',  '"> "',
         \   printf('--expect=ctrl-t,ctrl-v,ctrl-x%s', colors),
