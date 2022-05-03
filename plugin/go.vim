@@ -46,7 +46,6 @@ let s:packages = {
       \ 'fillstruct':    ['github.com/davidrjenni/reftools/cmd/fillstruct@master'],
       \ 'godef':         ['github.com/rogpeppe/godef@latest'],
       \ 'goimports':     ['golang.org/x/tools/cmd/goimports@master'],
-      \ 'golint':        ['golang.org/x/lint/golint@master'],
       \ 'revive':        ['github.com/mgechev/revive@latest'],
       \ 'gopls':         ['golang.org/x/tools/gopls@latest', {}, {'after': function('go#lsp#Restart', [])}],
       \ 'golangci-lint': ['github.com/golangci/golangci-lint/cmd/golangci-lint@latest'],
@@ -108,7 +107,7 @@ function! s:GoInstallBinaries(updateBinaries, ...)
     set noshellslash
   endif
 
-  let l:get_base_cmd = ['go', 'install', '-v']
+  let l:get_base_cmd = ['go', 'install', '-v', '-mod=readonly']
 
   " Filter packages from arguments (if any).
   let l:packages = {}
