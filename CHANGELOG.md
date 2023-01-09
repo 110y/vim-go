@@ -3,6 +3,23 @@
 BACKWARDS INCOMPATIBILITIES:
 
 IMPROVEMENTS:
+
+BUG FIXES:
+* Update [impl](https://github.com/josharian/impl) source path after its default branch was changed from master to main.
+  [[GH-3477]](https://github.com/fatih/vim-go/pull/3477)
+
+
+## v1.28 - (December 17, 2022)
+
+BUG FIXES:
+* Remove diagnostic message used during development.
+  [[GH-3476]](https://github.com/fatih/vim-go/pull/3476)
+
+## v1.27 - (December 17, 2022)
+
+BACKWARDS INCOMPATIBILITIES:
+
+IMPROVEMENTS:
 * Update documentation for installing tools.
   [[GH-3413]](https://github.com/fatih/vim-go/pull/3413)
 * Show diagnostics via go#tool#DescribeBalloon().
