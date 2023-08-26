@@ -50,6 +50,8 @@ function! s:sink(str) abort
     execute cmd fnameescape(filepath)
     call cursor(line, col)
     silent! norm! zvzz
+
+    call vista#util#Blink(3, 100)
   finally
     "jump back to old dir
     call go#util#Chdir(l:dir)
@@ -108,10 +110,16 @@ function! s:source(mode,...) abort
 
   for decl in decls
     " paddings
-    let space = " "
+    let space = ""
     for i in range(max_len - len(decl.ident))
       let space .= " "
     endfor
+
+    let keyword_spce = ""
+    for i in range(9 - len(decl.keyword))
+      let keyword_spce .= " "
+    endfor
+
 
     let pos = printf("%s\t%s\t%s",
           \ fnamemodify(decl.filename, "%"),
@@ -120,7 +128,7 @@ function! s:source(mode,...) abort
           \)
     call add(ret_decls, printf("%s\t%s\t%s\t%s",
           \ s:color(decl.ident . space, "goDeclsFzfFunction"),
-          \ s:color(decl.keyword, "goDeclsFzfKeyword"),
+          \ s:color(decl.keyword . keyword_spce, "goDeclsFzfKeyword"),
           \ s:color(decl.full, "goDeclsFzfComment"),
           \ s:color(pos, "goDeclsFzfSpecialComment"),
           \))
