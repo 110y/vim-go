@@ -256,7 +256,9 @@ function! s:register()
 
   " Resolve any symlinks in <afile> so that the filename will match what Vim
   " will ultimately and usually produce.
-  call go#lsp#DidOpen(resolve(expand('<afile>:p')))
+
+  " NOTE: disabled by 110y because it matters a lot for the startup time.
+  " call go#lsp#DidOpen(resolve(expand('<afile>:p')))
 endfunction
 
 function! s:noop(...) abort
