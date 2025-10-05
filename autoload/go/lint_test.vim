@@ -512,25 +512,25 @@ func! Test_Lint() abort
   call s:testLint()
 endfunc
 
-"func! Test_Lint_GOPATH() abort
-"  let g:go_gopls_enabled = 0
-"  let RestoreGO111MODULE = go#util#SetEnv('GO111MODULE', 'off')
-"  let RestoreGOPATH = go#util#SetEnv('GOPATH', fnameescape(fnamemodify(getcwd(), ':p')) . 'test-fixtures/lint')
-"
-"  call s:testLint()
-"
-"  call call(RestoreGOPATH, [])
-"  call call(RestoreGO111MODULE, [])
-"endfunc
+func! Test_Lint_GOPATH() abort
+  let g:go_gopls_enabled = 0
+  let RestoreGO111MODULE = go#util#SetEnv('GO111MODULE', 'off')
+  let RestoreGOPATH = go#util#SetEnv('GOPATH', fnameescape(fnamemodify(getcwd(), ':p')) . 'test-fixtures/lint')
 
-"func! Test_Lint_NullModule() abort
-"  let g:go_gopls_enabled = 0
-"  let RestoreGO111MODULE = go#util#SetEnv('GO111MODULE', 'off')
-"
-"  call s:testLint()
-"
-"  call call(RestoreGO111MODULE, [])
-"endfunc
+  call s:testLint()
+
+  call call(RestoreGOPATH, [])
+  call call(RestoreGO111MODULE, [])
+endfunc
+
+func! Test_Lint_NullModule() abort
+  let g:go_gopls_enabled = 0
+  let RestoreGO111MODULE = go#util#SetEnv('GO111MODULE', 'off')
+
+  call s:testLint()
+
+  call call(RestoreGO111MODULE, [])
+endfunc
 
 func! Test_Errcheck() abort
   let g:go_gopls_enabled = 0
@@ -602,11 +602,11 @@ func! Test_Errcheck_compilererror() abort
 endfunc
 
 func! s:vimdir()
-  let l:vim = "vim-8.2"
+  let l:vim = "vim-9.1"
   if has('nvim')
     let l:vim = 'nvim'
-  elseif v:version == 810
-    let l:vim = 'vim-8.1'
+  elseif v:version == 820
+    let l:vim = 'vim-8.2'
   endif
 
   return l:vim

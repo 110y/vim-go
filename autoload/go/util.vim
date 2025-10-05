@@ -314,7 +314,9 @@ function! go#util#Shelljoin(arglist, ...) abort
     endif
 
     let ssl_save = &shellslash
-    " set noshellslash
+    if has("win32")
+      set noshellslash
+    endif
     if a:0
       return join(map(copy(a:arglist), 'shellescape(v:val, ' . a:1 . ')'), ' ')
     endif
@@ -332,7 +334,9 @@ endfunction
 function! go#util#Shelllist(arglist, ...) abort
   try
     let ssl_save = &shellslash
-    " set noshellslash
+    if has("win32")
+      set noshellslash
+    endif
     if a:0
       return map(copy(a:arglist), 'go#util#Shelljoin(v:val, ' . a:1 . ')')
     endif
